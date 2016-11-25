@@ -2,7 +2,5 @@
 
 (defpackage #:math-utils
   (:use #:cl #:iterate)
-  (:export
-   #:partition
-   #:fit))
+  (:export))
 
