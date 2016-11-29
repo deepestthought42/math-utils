@@ -8,7 +8,6 @@
   :depends-on (#:iterate
                #:alexandria)
   :components ((:file "package")
-	       (:file "partition")
-	       (:file "fit")
+	       (:file "moments")
                (:file "math-utils")))
 
