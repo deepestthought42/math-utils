@@ -13,8 +13,10 @@
    (std-error :accessor std-error :initarg :std-error :initform 0)
    (no-of-data :accessor no-of-data :initarg :no-of-data :initform 0)))
 
-(defun online-variance (data &key (error-on-n=1 t) vals-on-n=1
-			       (error-on-n=0 t) vals-on-n=0)
+(defun online-variance (data &key (error-on-n=1 t) 
+				  (error-on-n=0 t)
+				  (default-mean 0d0)
+				  (default-std-deviation 0d0))
   "Calculates the mean, variance, and std. deviation and std. error of sequence DATA with equal
   weights as described in:
   https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Online_algorithm
@@ -25,11 +27,25 @@
     ((= (length data) 0)
      (if error-on-n=0
 	 (error 'insufficient-data)
-	 (return-from online-variance (values-list vals-on-n=0))))
+	 (return-from online-variance
+	   (make-instance 'moment
+			  :mean default-mean
+			  :variance (* default-std-deviation
+				       default-std-deviation)
+			  :std-deviation default-std-deviation
+			  :std-error default-std-deviation
+			  :no-of-data 0))))
     ((= (length data) 1)
      (if error-on-n=1
 	 (error 'insufficient-data)
-	 (return-from online-variance (values-list vals-on-n=1)))))
+	 (return-from online-variance
+	   (make-instance 'moment
+			  :mean (elt data 0)
+			  :variance (* default-std-deviation
+				       default-std-deviation)
+			  :std-deviation default-std-deviation
+			  :std-error default-std-deviation
+			  :no-of-data 1)))))
   (iter
     (with mean = 0)
     (with M2 = 0)
