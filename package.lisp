@@ -8,7 +8,8 @@
    #:mean
    #:variance
    #:std-deviation
-   #:std-error))
+   #:std-error
+   #:invert-matrix))
 
 
 
