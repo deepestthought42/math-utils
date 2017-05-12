@@ -9,5 +9,6 @@
                #:alexandria)
   :components ((:file "package")
 	       (:file "moments")
+	       (:file "matrix")
                (:file "math-utils")))
 
