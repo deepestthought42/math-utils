@@ -9,7 +9,9 @@
    #:variance
    #:std-deviation
    #:std-error
-   #:invert-matrix))
+   #:invert-matrix
+   #:matrix-not-square
+   #:determinant))
 
 
 

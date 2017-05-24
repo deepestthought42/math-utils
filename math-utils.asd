@@ -9,6 +9,6 @@
                #:alexandria)
   :components ((:file "package")
 	       (:file "moments")
-	       (:file "matrix")
+;	       (:file "matrix") superseeded by lla
                (:file "math-utils")))
 

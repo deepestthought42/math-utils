@@ -1,6 +1,11 @@
 (in-package #:math-utils)
 
 
+(define-condition matrix-not-square (type-error)
+  ()
+  (:report (lambda (c stream) (format stream "Expected NxN matrix given as array. Got: ~a instead."
+				 (type-of (type-error-datum c))))))
+
 (defun invert-matrix (in-matrix)
   "Given a square matrix in IN-MATRIX returns 
 INVERSE-OF-IN-MATRIX, determinant"
@@ -120,3 +125,29 @@ INVERSE-OF-IN-MATRIX, determinant"
 		  (- (aref out-matrix j i)))
 	    (setf (aref out-matrix j i) temp))))
     (values out-matrix det)))
+
+
+
+
+
+
+
+(defun check-matrix-is-square (matrix)
+  "Check that matrix, given as an array in MATRIX, is square (is a 2d
+  array with equal number of entries in both dimensions, nxn) and return n."
+  (let+ ((dimensions (array-dimensions matrix))
+	 ((dim-x dim-y) dimensions))
+    (if  (not (and (= 2 (length dimensions))
+		   (= dim-x dim-y)))
+	 (error 'matrix-not-square
+		:expected-type '(simple-array double-float)
+		:datum matrix)
+	 t)))
+
+
+
+
+
+
+
+
