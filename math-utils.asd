@@ -2,13 +2,12 @@
 
 (asdf:defsystem #:math-utils
   :serial t
-  :description "Describe math-utils here"
-  :author "Your Name <your.name@example.com>"
-  :license "Specify license here"
+  :description "Small lisp library containing math utilities for my data analysis packages."
+  :author "Renee Klawitter <klawitterrenee@gmail.com>"
+  :license "Apache 2.0"
   :depends-on (#:iterate
                #:alexandria)
   :components ((:file "package")
 	       (:file "moments")
-;	       (:file "matrix") superseeded by lla
                (:file "math-utils")))
 
